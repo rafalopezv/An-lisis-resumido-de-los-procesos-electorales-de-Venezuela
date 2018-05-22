@@ -1,0 +1,421 @@
+---
+title: "Introducci<c3><b3>n a la visualizaci<c3><b3>n de datos"
+author: "Rafael L<c3><b3>pez V."
+output:
+  word_document:
+    toc: yes
+    toc_depth: '5'
+  pdf_document:
+    toc: yes
+    toc_depth: '5'
+  sansfont: Calibri Light
+  html_document:
+    fig_caption: yes
+    highlight: kate
+    self_contained: no
+    theme: cosmo
+    toc: yes
+    toc_depth: 5
+    toc_float: yes
+bibliography:
+- packages.bib
+- referencias.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+Sys.setlocale(locale = "es_ES.UTF-8")
+
+pqkgs <- c("rio", "magrittr", "stringr", "dplyr", "plyr",  "repmis", "knitr", "rgdal", 
+           "highcharter", "geojsonio", "spdplyr", "rmapshaper", "kableExtra", "knitr", "tidyverse", "ggplot2", "nycflights13")
+
+lapply(pqkgs, function(x) require(x, character.only = TRUE))
+
+#Citación automática
+repmis::LoadandCite(pqkgs, file = 'packages.bib')
+rm(pqkgs)
+
+```
+
+# Sílabo y condiciones generales
+
+## Introducción
+
+La [Escuela de la Producción y Competitividad (ePC)](http://www.epc-ucb.edu.bo/website/index.php) de la [Universidad Católica Boliviana “San Pablo”](http://www.ucb.edu.bo/Nacional/Forms/Index.aspx) es el programa de más alto nivel académico en Bolivia, que con sus programas de Maestrías para el Desarrollo ha formado a más de 1.240 líderes que aportan sus conocimientos para el desarrollo del país.
+
+Actualmente, la ePC cuenta con un convenio con la Universidad de Harvard, para la asistencia en el desarrollo de currícula, capacitación de docentes, estudios de casos y material académico.
+
+Maestrías para el Desarrollo fue seleccionada en reiteradas ocasiones para figurar en el Ranking de las mejores Escuelas de Negocio de Latinoamérica publicado anualmente por la revista internacional América Economía; además de recibir, durante el 2017, por parte de EDUNIVERSAL, prestigiosa calificadora de rankings, el reconocimiento como una de las mejores Escuelas de Negocio del Mundo, como “Good Business School With Strong Regional Influence”.
+
+Conscientes de la necesidad de continua capacitación en los profesionales bolivianos, la ePC ofrece cursos de especialización a medida en las áreas de Negocios, Administración, Finanzas, Economía, Estrategia, Gerencia, Liderazgo, Negociación, Habilidades Gerenciales, Programas de Desarrollo, Creatividad e Innovación y temas relacionados a la Alta Gerencia Moderna.
+
+El presente curso introduce al participante a la visualización de datos en cuatro pasos. El  primero consiste en mostrar y hacer familiar las **herramientas para el procesamiento y visualización de datos**, Excel, R[-@CiteR],  [Tableau](https://www.tableau.com), [Plotly](https://plot.ly), entre otros. El segundo paso explora las características de la materia prima de toda visualización: **base de datos limpia**. Este paso también explica **conceptos de estadística** útiles en visualizaciones: histogramas, boxplots, regresión lineal, etc. El tercer paso consiste en mostrar **tipos de visualizaciones**, estáticas, dinámicas y aplicaciones y **emplear lo aprendido** construyendo visualizaciones propias. Finalmente, el cuarto paso **resume lo aprendido** y **muestra una galería de visualizaciones**.
+
+En resumen, los cuatro bloques son:
+
+1. Herramientas para procesamiento y visualización
+2. Bases de datos y estadística
+3. Tipos de visualizaciones y aplicación práctica
+4. Resumen y galería de visualizaciones
+
+## Lógica del curso
+
+Hadley Whickham [-@wickham2016r] resume el proceso de análisis de datos en la siguiente figura:
+
+![](img/ciclo.png)
+
+Visulizar y comunicar (usando visualizaciones) son parte de un circuito mayor. Por tanto, es importante al menos, explorar las características de cada eslabón y enfatizar en *visualizar* y *comunicar*. El curso cubre introductoriamente cada una de las partes de la figura. 
+
+Visualizar para **entender** relaciones iniciales de los datos es un primer paso. Por ejemplo, el siguiente gráfico indaga la relación entre el número de vuelos y promedio de atraso en la llegada de más de 300 mil de estos que partieron del aeropuerto de Nueva York en 2013. Whickham [-@R-nycflights13] Highcharter[-@R-highcharter]
+
+![](img/viajes.png)
+
+**Como se observa: A más vuelos menos variación en los atrasos**
+
+La otra contribución de la visualización es mostrar resultados, narrar una historia. Por ejemplo, la siguiente figura.
+
+![](img/poblacion.png)
+
+<br>
+¿Cómo llegar a producir visualizaciones similares? Solo si se sabe como utilizar cada eslabón del análisis de datos:
+
+- Conocer las herramientas
+- Conocer como manejar bases de datos
+- Conocer algo de estadística
+- Ser creativo
+
+
+## Requerimientos
+
+- Tener presintalados y/o conocer el acceso web de los programas que se utilizarán en una computadora portátil o estacionaria:
+    + [R](https://cran.r-project.org)
+    + [RStudio](https://www.rstudio.com)
+    + [Tableau](https://www.tableau.com/es-es)
+    + [Microsoft Excel](https://office.live.com/start/Excel.aspx?omkt=es-ES)
+
+## Carga horaria y cronograma
+
+- 15 horas presenciales:
+    + Divididas en 6 sesiones de 2.5 horas cada una
+    + Divididas en 2 fines de semana consecutivos, viernes y sábado
+    + Cada viernes se pasan 2.5 horas de clase
+    + Cada sábado se pasan 5 horas de clase
+    
+El siguiente esquema resume la propuesta de horas y cronograma:
+
+![](img/cronograma.png)
+
+## Esquema del curso
+
+![](img/esquema.png)
+
+Cada uno de los bloques estará acompañado de una sesión práctica, en la que los participantes aprenderán a aplicar lo desarrollado. Para todas las sesiones prácticas se proporcionará:
+
+ - Accesos libres a página de visualizaciones 
+ - Bases de datos con contexto boliviano e internacional
+ - Accesos a bases de datos
+ - Manuales de instalación y uso básico de los softwares a utilizarse
+ - Catálogo de ejercicios a desarrollarse en clase
+ 
+## Referencias de librerías 
+
+Esta propuesta utilizó R y las librerías ggplot2[@R-ggplot2], magrittr[@R-magrittr] y dplyr[@R-dplyr]
+
+## Mayor información 
+
+Para mayor información comunicarse con Andrea Sejas, Responsable de Administración de
+Programas de Educación Continua e Investigaciones de la Escuela de Producción y Competitividad:
+
+- Correo electrónico: <a href="mailto:asejas@mpd.ucb.edu.bo">asejas@mpd.ucb.edu.bo</a> 
+- Teléfonos: 2786719 – 2786729 (Int. 114)
+
+\pagebreak 
+
+
+# Instalación y exploración de programas
+
+## R
+
+### Advertencia inicial
+
+Al descagar e instalar R ya puede trabajarse de inmediato. Sin embargo, si después de instalar abren el programa, se darán cuenta que su interfaz no es de las más atractivas. Las cosas grandes, existen a pesar de...decía Alan Poe. Por ello, hay un complemento que hace que el trabajo en R sea más amigable: esta es RStudio. Por tanto lo recomendable es que instalen R primero, después RStudio y en seguida empiecen la exploración del programa.
+
+¿Quieres saber más sobre R? [Aquí](https://www.r-project.org/about.html) una explicación mas detallada por parte de los propios creadores (en Inglés). [Aquí](https://es.wikipedia.org/wiki/R_(lenguaje_de_programación)) la versión de Wikipedia (muy completa)
+
+### Instalar
+
+R está disponible para sistemas operativos Windows, Macintosh, Unix y GNU/Linux. Para encontrar la versión correcta pinchar [aquí](https://cran.r-project.org). Debe seleccioanrse una opción de acuerdo a las características de su computadora.
+
+![](img/instalarr.png)
+
+
+Al pinchar en el tipo de sistema operativo aparecerán diferentes versiones. Descagar e instalar la más reciente y comaptible con su sistema operativo. Si descarga para sistema windows esta imagen debería aparecerle:
+
+![](img/rwindows.png)
+
+
+Para comprobar que R se ha instalado correctamente, buscar el programa y abrirlo. Esta imagen similar a esta debiera aparecerle:
+
+![](img/entornor.png)
+
+## RStudio
+
+Al pinchar [aquí](https://www.rstudio.com) elegir la opción que resalto en rojo "Download RStudio"
+
+![](img/rstudio.png)
+
+Elegir la versión gratuita que resalto en rojo, pinchando en "DOWNLOAD"
+
+![](img/rstudiofree.png)
+
+Una vez descagargado, instale, busque RStudio entre sus programas y abra el programa. Si el programa se ha instalado correctamente una imagen similar a esta debiera aparecerle:
+
+![](img/consolar.png)
+
+### Pruebas de funcionamiento
+
+Para empezar un nuevo proyecto debe abrirse un nuevo "script". Ver la siguiente imagen como guía
+
+![](img/script.png)
+Al hacer esto se abrirá una nueva ventana donde podrá redactar su código
+
+![](img/script1.png)
+
+R funciona como un celular. Tiene algunas funciones ya instaladas pero si se desea tarabajar cosas específicas pueden añadirse "librerías" (equivalentes a las apps de un celular). Sin embargo, a diferencia de un celular cada vez que se quiera usar la librería descargada en un proyecto hay que cargar la misma. Para instalar nuevas librerías se requiere estar conectado al internet.
+
+Más allá del curso recomiendo instalar las siguientes librerías:
+
+![](img/instalar.png)
+De ahora en adelante cuando se requiera escribir código de R lo haré en este formato:
+
+```
+install.packages("tidyverse")
+install.packages("magritrr")
+install.packages("hichcharter")
+install.packages("WDI")
+install.packages("data360r")
+install.packages("leaflet")
+```
+
+Ahora, cargaremos algunas de las librerías recién instaladas y haremos una prueba. Puede copiar el código y copiarlo en su consola de R
+
+```
+install.packages("tidyverse")
+install.packages("magritrr")
+install.packages("hichcharter")
+install.packages("WDI")
+install.packages("data360r")
+install.packages("leaflet")
+
+library(tidyverse)
+library(highcharter)
+
+hc <- highchart() %>%
+  hc_chart(type = "area") %>%
+  hc_title(text = "Población mundial por continente") %>%
+  hc_subtitle(text = "Fuente: Wikipedia.org") %>%
+  hc_xAxis(categories = c("1750", "1800", "1850", "1900", "1950", "1999", "2050"),
+           tickmarkPlacement = "on",
+           title = list(enabled = FALSE)) %>%
+  hc_yAxis(title = list(text = "Porcentaje")) %>%
+  hc_tooltip(pointFormat = "<span style=\"color:{series.color}\">{series.name}</span>:
+             <b>{point.percentage:.1f}%</b> ({point.y:,.0f} millones)<br/>",
+             shared = TRUE) %>%
+  hc_plotOptions(area = list(
+    stacking = "percent",
+    lineColor = "#ffffff",
+    lineWidth = 1,
+    marker = list(
+      lineWidth = 1,
+      lineColor = "#ffffff"
+    ))
+  ) %>%
+  hc_add_series(name = "Asia", data = c(502, 635, 809, 947, 1402, 3634, 5268)) %>%
+  hc_add_series(name = "Africa", data = c(106, 107, 111, 133, 221, 767, 1766)) %>%
+  hc_add_series(name = "Europa", data = c(163, 203, 276, 408, 547, 729, 628)) %>%
+  hc_add_series(name = "América", data = c(18, 31, 54, 156, 339, 818, 1201)) %>%
+  hc_add_series(name = "Oceanía", data = c(2, 2, 2, 6, 13, 30, 46))  %>%
+  hc_add_theme(hc_theme_google())
+```
+
+El resultado debería ser este[^1] :
+
+![](img/prueba.png)
+
+### IMPORTANTE!!
+
+Cada vez que se redacta código en R y en otros lenguajes de programación, debe instruirse a la computadora que ejecute lo redactado, no es suficiente escribir. El comando de ejecutar puede hacerse de dos modos:
+
+- Se coloca el cursor del mouse sobre la prímera línea de código y se presiona el boton "run" que se encuentra en la parte superiror derecha
+
+![](img/run.png)
+
+- Se coloca el cursor del mouse sobre la prímera línea de código y se presiona Control + Enter (en Windows) ó command + enter (en Mac)
+
+## Tableau
+
+Tableau es una maravilla, pero encontrara la versión pública y gratuita es un qui-lom-bo. Si quieren, antes de empezar, ver un portafolio de lo que Tableau puede hacer pinchar [aquí](https://public.tableau.com/es-es/s/gallery). Esta galería tienen visualizaciones que fueron hechas con la versión que usted instalará.
+
+Para instalar Tableau pinchar [aquí](https://public.tableau.com/es-es/s/download/thanks). Se requiere ingresar su correo electrónico para iniciar la descarga. El instalador pesa 450 megas aproximadamente. Una imagen similar a esta debiera aparecerle:
+
+![](img/tableau)
+
+Si es estudiante y puede acreditarlo, puede [acceder](https://www.tableau.com/es-es/academic/students) a una versión mejorada y gratuita de Tableau
+
+## Stata 
+
+STATA es software privativo. Sin embargo, puede revisarse sus características [aquí](https://www.stata.com/why-use-stata/)
+
+## Excel
+
+Si por alguna razón no tiene Excel descargado y en funcionamiento en su computadora puede acceder a una versión en línea [aquí](https://office.live.com/start/Excel.aspx). Debe tener una cuenta para acceder. La cuenta es gratuita y requiere su número de celular o su dirección de correo electrónico. 
+
+\pagebreak
+
+# Sesión 1. 4 de mayo de 2018
+
+## Contenidos mínimos
+
+- Explicación de la manipulación básica de R
+    
+    + Lenguaje de programación por objeto
+    + Direcciones relativas y absolutas de archivos. Es decir, como importar archivos sabiendo su localización
+    + Ventanas de la consola en RStudio. Para que sirve cada una de las 4 ventanas
+    + Bases de datos preinstaladas
+    + [Operador Pipe %>%](https://rsanchezs.gitbooks.io/rprogramming/content/chapter9/pipeline.html)
+    + Librería [ggplot](http://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html) para visualizaciones
+    + Consultar dudas con [Stackoverflow](https://es.stackoverflow.com)
+    + Trabajar con múltiples bases de datos a la vez
+        
+- Explicación de funciones importantes de Excel
+    
+    + Tener cuidado con: i) fechas; ii) formatos de las columnas; iii) Decimales iv) Colores; v) Espacios
+    + Cosas que en menor medida Excel puede hacer más rápido: i) rellenar celdas vacías; cambios menores en toda la base de datos (por ejemplo, de puntos a comas)
+    + Tablas dinámicas
+        
+- Conocer la potencia de los lenguajes de programación para fines estadísticos
+    
+    + Crear bases de datos
+    + Importar bases de datos de la web
+    + Trabajar simultáneamente con mas de una base de datos
+    + Producir páginas web
+    + Producir archivos .pdf
+    + Producir archivos .doc(x)
+        
+- Conocer el alcance de la reproducibilidad
+
+    + [Ejemplos](https://timogrossenbacher.ch/2016/12/beautiful-thematic-maps-with-ggplot2-only/)
+    + Conocer como trabajar con el "Dropbox" del código: [GitHub](https://github.com)
+        
+- Conocer donde dirigirse en la web a la hora de hacer/consultar visualizaciones
+
+    + [Plotly](https://plot.ly)
+    + [d3js](https://d3js.org)
+    + [datavizproject](http://datavizproject.com)
+        
+## Recursos sugeridos
+
+- Para profundizar en R: [R for Data Science](http://r4ds.had.co.nz)
+- Para hacer investigación reproducible: [Reproducible Research with R and RStudio](https://englianhu.files.wordpress.com/2016/01/reproducible-research-with-r-and-studio-2nd-edition.pdf)
+- Para hacer cursos en línea de R: [Data Camp](https://www.datacamp.com)
+- Para aprender R en la misma consola de R: [Swirl](http://swirlstats.com)
+ 
+## Bases de datos de práctica
+ 
+- API_NY.GDP.PCAP.CD_DS2_en_csv_v2.csv
+- candidaturas.judiciales.xlsx
+        
+# Sesión 2. 5 de mayo de 2018
+
+## Contenidos mínimos
+
+- Conocer cuando una base de datos se considera limpia
+    
+    + Aplicar la fórmula: 1 columna una variable
+
+- Conocer como limpiar una base de datos
+    
+    + ¿Qué siginifica que una base este sucia?
+    + Ejemplos más comunes de bases de datos sucias y su solución
+
+- Conocer los formatos horizontal y vertical de las bases de datos
+
+    + Detección del formato de una base de datos
+    + Práctica de conversiones de un formato a otro  
+
+- Conocer medidas de centralidad y dispersión estadística
+
+    + Promedio
+    + Moda
+    + Mediana
+    + Boxplots
+    + Desviación estándar
+    + Función de densidad de probabilidad 
+    + Histogramas
+    
+- Bases de regresión lineal
+
+    + Explorar [Gapminder](https://www.gapminder.org) como introducción
+    + Formulación de hipótesis 
+    + Mínimos cuadrados
+    + Regresión múltiple
+    + Interpretación de coeficientes
+    + Regresión simple y lineal en Excel y R
+    
+## Recursos sugeridos
+
+- Para limpiar bases de datos: [An introduction to data cleaning with R](https://cran.r-project.org/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf)
+- Para centralidad y dispersión estadística y regresión lineal: [Estadística Aplicada a los Negocios](https://www.edx.org/es/course/estadistica-aplicada-los-negocios-galileox-pcpsta01x)
+
+## Bases de datos
+
+- sesion2.R
+- 2001.años.ecolaridad.xlsx
+- 2001.hijos.nacidos.vivos.xls
+- 2001.años.ecolaridad2.xlsx
+- codigos.ine.xlsx
+
+# Sesión 3. 11 de mayo de 2018 y 12 de mayo
+
+## Contenidos mínimos
+
+- Visualizaciones estáticas
+  
+    + Visualización de mapas
+    + Líneas de tendencia
+    + Histogramas
+    + Densidades de probabilidad
+    + Barras
+    + Sopreposición de gráficos
+    
+- Visualizaciones dinámicas
+    
+    + Figuras transitivas 
+    + Mapas reactivos
+    + Interfaces con Java Script
+    + Plotly y ggplot
+    
+- Apps
+  
+    + Exploración de [shinny apps](https://shiny.rstudio.com)
+
+## Recusos sugeridos
+
+- Para esta parte todos los recursos serán entregados en clase
+    
+## Base de datos
+
+- Para esta parte todos los recursos serán descargados del internet
+    
+# Sesión 4. 12 de mayo
+
+- Descargar, limpiar y visualizar. Se proporcionarán bases de datos entre la segunda y tercera sesión de acuerdo al interés de los participanetes.
+
+[^1]: No es exactamente este, es mejor, es interactivo, pero por reglas académicas no puedo poner un gráfico interactivo en un PDF.
+
+# Referencias
+
+
+
+
+
